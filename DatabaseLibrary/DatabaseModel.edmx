@@ -1,0 +1,616 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DatabaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DatabaseModelStoreContainer">
+    <EntitySet Name="LibrarySet" EntityType="DatabaseModel.Store.LibrarySet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BookDescriptionSet" EntityType="DatabaseModel.Store.BookDescriptionSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BookInstanceSet" EntityType="DatabaseModel.Store.BookInstanceSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PersonSet" EntityType="DatabaseModel.Store.PersonSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PhoneSet" EntityType="DatabaseModel.Store.PhoneSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="BusyBookCardSet" EntityType="DatabaseModel.Store.BusyBookCardSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AccountSet" EntityType="DatabaseModel.Store.AccountSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SubscribtionSet" EntityType="DatabaseModel.Store.SubscribtionSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PersonSet_Employee" EntityType="DatabaseModel.Store.PersonSet_Employee" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PersonSet_Reader" EntityType="DatabaseModel.Store.PersonSet_Reader" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="BookDescriptionBookInstance" Association="DatabaseModel.Store.BookDescriptionBookInstance">
+      <End Role="BookInstance" EntitySet="BookInstanceSet" />
+      <End Role="BookDescription" EntitySet="BookDescriptionSet" />
+    </AssociationSet>
+    <AssociationSet Name="LibraryEmployee" Association="DatabaseModel.Store.LibraryEmployee">
+      <End Role="Library" EntitySet="LibrarySet" />
+      <End Role="Employee" EntitySet="PersonSet_Employee" />
+    </AssociationSet>
+    <AssociationSet Name="PersonPhone" Association="DatabaseModel.Store.PersonPhone">
+      <End Role="Person" EntitySet="PersonSet" />
+      <End Role="Phone" EntitySet="PhoneSet" />
+    </AssociationSet>
+    <AssociationSet Name="BookInstanceBusyBookCard" Association="DatabaseModel.Store.BookInstanceBusyBookCard">
+      <End Role="BookInstance" EntitySet="BookInstanceSet" />
+      <End Role="BusyBookCard" EntitySet="BusyBookCardSet" />
+    </AssociationSet>
+    <AssociationSet Name="ReaderBusyBookCard" Association="DatabaseModel.Store.ReaderBusyBookCard">
+      <End Role="Reader" EntitySet="PersonSet_Reader" />
+      <End Role="BusyBookCard" EntitySet="BusyBookCardSet" />
+    </AssociationSet>
+    <AssociationSet Name="AccountReader" Association="DatabaseModel.Store.AccountReader">
+      <End Role="Reader" EntitySet="PersonSet_Reader" />
+      <End Role="Account" EntitySet="AccountSet" />
+    </AssociationSet>
+    <AssociationSet Name="AccountSubscribtion" Association="DatabaseModel.Store.AccountSubscribtion">
+      <End Role="Account" EntitySet="AccountSet" />
+      <End Role="Subscribtion" EntitySet="SubscribtionSet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_inherits_Person" Association="DatabaseModel.Store.FK_Employee_inherits_Person">
+      <End Role="Person" EntitySet="PersonSet" />
+      <End Role="Employee" EntitySet="PersonSet_Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Reader_inherits_Person" Association="DatabaseModel.Store.FK_Reader_inherits_Person">
+      <End Role="Person" EntitySet="PersonSet" />
+      <End Role="Reader" EntitySet="PersonSet_Reader" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="LibrarySet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Admin" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="WorkTimeBegin" Type="time" Nullable="false" />
+    <Property Name="WorkTimeEnd" Type="time" Nullable="false" />
+    <Property Name="FreeDay" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BookDescriptionSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Author" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Publisher" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PublishingYear" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Genre" Type="int" Nullable="false" />
+    <Property Name="Count" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BookInstanceSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DescriptionId" Type="int" Nullable="false" />
+    <Property Name="IsBusy" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PersonSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MiddleName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Sex" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PhoneSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PersonId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BusyBookCardSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReaderId" Type="int" Nullable="false" />
+    <Property Name="BusyDateTimeBegin" Type="datetime" Nullable="false" />
+    <Property Name="BusyDateTimeEnd" Type="datetime" Nullable="false" />
+    <Property Name="BookInstance_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AccountSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Login" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Reader_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SubscribtionSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DurationTimeBegin" Type="datetime" Nullable="false" />
+    <Property Name="DurationTimeEnd" Type="datetime" Nullable="false" />
+    <Property Name="Genre" Type="int" Nullable="false" />
+    <Property Name="AccountId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PersonSet_Employee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Profession" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ExperienceYears" Type="int" Nullable="false" />
+    <Property Name="LibraryId" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PersonSet_Reader">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="BookDescriptionBookInstance">
+    <End Role="BookInstance" Type="DatabaseModel.Store.BookInstanceSet" Multiplicity="*" />
+    <End Role="BookDescription" Type="DatabaseModel.Store.BookDescriptionSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="BookDescription">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BookInstance">
+        <PropertyRef Name="DescriptionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="LibraryEmployee">
+    <End Role="Library" Type="DatabaseModel.Store.LibrarySet" Multiplicity="1" />
+    <End Role="Employee" Type="DatabaseModel.Store.PersonSet_Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Library">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="LibraryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PersonPhone">
+    <End Role="Person" Type="DatabaseModel.Store.PersonSet" Multiplicity="1" />
+    <End Role="Phone" Type="DatabaseModel.Store.PhoneSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Phone">
+        <PropertyRef Name="PersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="BookInstanceBusyBookCard">
+    <End Role="BookInstance" Type="DatabaseModel.Store.BookInstanceSet" Multiplicity="1" />
+    <End Role="BusyBookCard" Type="DatabaseModel.Store.BusyBookCardSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookInstance">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BusyBookCard">
+        <PropertyRef Name="BookInstance_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ReaderBusyBookCard">
+    <End Role="Reader" Type="DatabaseModel.Store.PersonSet_Reader" Multiplicity="1" />
+    <End Role="BusyBookCard" Type="DatabaseModel.Store.BusyBookCardSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reader">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BusyBookCard">
+        <PropertyRef Name="ReaderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AccountReader">
+    <End Role="Reader" Type="DatabaseModel.Store.PersonSet_Reader" Multiplicity="1" />
+    <End Role="Account" Type="DatabaseModel.Store.AccountSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reader">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="Reader_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AccountSubscribtion">
+    <End Role="Account" Type="DatabaseModel.Store.AccountSet" Multiplicity="1" />
+    <End Role="Subscribtion" Type="DatabaseModel.Store.SubscribtionSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Subscribtion">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_inherits_Person">
+    <End Role="Person" Type="DatabaseModel.Store.PersonSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Employee" Type="DatabaseModel.Store.PersonSet_Employee" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Reader_inherits_Person">
+    <End Role="Person" Type="DatabaseModel.Store.PersonSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Reader" Type="DatabaseModel.Store.PersonSet_Reader" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reader">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DatabaseModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="DatabaseModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="LibrarySet" EntityType="DatabaseModel.Library" />
+          <EntitySet Name="BookDescriptionSet" EntityType="DatabaseModel.BookDescription" />
+          <EntitySet Name="BookInstanceSet" EntityType="DatabaseModel.BookInstance" />
+          <AssociationSet Name="BookDescriptionBookInstance" Association="DatabaseModel.BookDescriptionBookInstance">
+            <End Role="BookInstance" EntitySet="BookInstanceSet" />
+            <End Role="BookDescription" EntitySet="BookDescriptionSet" />
+          </AssociationSet>
+          <EntitySet Name="PersonSet" EntityType="DatabaseModel.Person" />
+          <AssociationSet Name="LibraryEmployee" Association="DatabaseModel.LibraryEmployee">
+            <End Role="Library" EntitySet="LibrarySet" />
+            <End Role="Employee" EntitySet="PersonSet" />
+          </AssociationSet>
+          <EntitySet Name="PhoneSet" EntityType="DatabaseModel.Phone" />
+          <AssociationSet Name="PersonPhone" Association="DatabaseModel.PersonPhone">
+            <End Role="Person" EntitySet="PersonSet" />
+            <End Role="Phone" EntitySet="PhoneSet" />
+          </AssociationSet>
+          <EntitySet Name="BusyBookCardSet" EntityType="DatabaseModel.BusyBookCard" />
+          <AssociationSet Name="BookInstanceBusyBookCard" Association="DatabaseModel.BookInstanceBusyBookCard">
+            <End Role="BookInstance" EntitySet="BookInstanceSet" />
+            <End Role="BusyBookCard" EntitySet="BusyBookCardSet" />
+          </AssociationSet>
+          <AssociationSet Name="ReaderBusyBookCard" Association="DatabaseModel.ReaderBusyBookCard">
+            <End Role="Reader" EntitySet="PersonSet" />
+            <End Role="BusyBookCard" EntitySet="BusyBookCardSet" />
+          </AssociationSet>
+          <EntitySet Name="AccountSet" EntityType="DatabaseModel.Account" />
+          <AssociationSet Name="AccountReader" Association="DatabaseModel.AccountReader">
+            <End Role="Reader" EntitySet="PersonSet" />
+            <End Role="Account" EntitySet="AccountSet" />
+          </AssociationSet>
+          <EntitySet Name="SubscribtionSet" EntityType="DatabaseModel.Subscribtion" />
+          <AssociationSet Name="AccountSubscribtion" Association="DatabaseModel.AccountSubscribtion">
+            <End Role="Account" EntitySet="AccountSet" />
+            <End Role="Subscribtion" EntitySet="SubscribtionSet" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Library">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Address" Type="String" Nullable="false" />
+          <Property Name="Phone" Type="String" Nullable="false" />
+          <Property Name="Admin" Type="String" Nullable="false" />
+          <Property Name="WorkTimeBegin" Type="Time" Nullable="false" />
+          <Property Name="WorkTimeEnd" Type="Time" Nullable="false" />
+          <Property Name="FreeDay" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="DatabaseModel.LibraryEmployee" FromRole="Library" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="BookDescription">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Author" Type="String" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Publisher" Type="String" Nullable="false" />
+          <Property Name="PublishingYear" Type="String" Nullable="false" />
+          <Property Name="Genre" Type="DatabaseModel.Genres" Nullable="false" />
+          <Property Name="Count" Type="String" Nullable="false" />
+          <NavigationProperty Name="BookInstances" Relationship="DatabaseModel.BookDescriptionBookInstance" FromRole="BookDescription" ToRole="BookInstance" />
+        </EntityType>
+        <EnumType Name="Genres" cg:ExternalTypeName="DatabaseLibrary.Genres" />
+        <EntityType Name="BookInstance">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DescriptionId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BookDescription" Relationship="DatabaseModel.BookDescriptionBookInstance" FromRole="BookInstance" ToRole="BookDescription" />
+          <Property Name="IsBusy" Type="Boolean" Nullable="false" cg:SetterAccess="Private" />
+          <NavigationProperty Name="BusyBookCard" Relationship="DatabaseModel.BookInstanceBusyBookCard" FromRole="BookInstance" ToRole="BusyBookCard" />
+        </EntityType>
+        <Association Name="BookDescriptionBookInstance">
+          <End Type="DatabaseModel.BookInstance" Role="BookInstance" Multiplicity="*" />
+          <End Type="DatabaseModel.BookDescription" Role="BookDescription" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="BookDescription">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BookInstance">
+              <PropertyRef Name="DescriptionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Person" Abstract="true">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" />
+          <Property Name="MiddleName" Type="String" Nullable="false" />
+          <Property Name="LastName" Type="String" Nullable="false" />
+          <Property Name="Sex" Type="String" Nullable="false" />
+          <NavigationProperty Name="Phone" Relationship="DatabaseModel.PersonPhone" FromRole="Person" ToRole="Phone" />
+        </EntityType>
+        <EntityType Name="Employee" BaseType="DatabaseModel.Person" >
+          <Property Name="Profession" Type="String" Nullable="false" />
+          <Property Name="ExperienceYears" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Library" Relationship="DatabaseModel.LibraryEmployee" FromRole="Employee" ToRole="Library" />
+          <Property Name="LibraryId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="LibraryEmployee">
+          <End Type="DatabaseModel.Library" Role="Library" Multiplicity="1" />
+          <End Type="DatabaseModel.Employee" Role="Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Library">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="LibraryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Reader" BaseType="DatabaseModel.Person" >
+          <NavigationProperty Name="BusyBooks" Relationship="DatabaseModel.ReaderBusyBookCard" FromRole="Reader" ToRole="BusyBookCard" />
+          <NavigationProperty Name="Account" Relationship="DatabaseModel.AccountReader" FromRole="Reader" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="Phone">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="DatabaseModel.PersonPhone" FromRole="Phone" ToRole="Person" />
+          <Property Name="PersonId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="PersonPhone">
+          <End Type="DatabaseModel.Person" Role="Person" Multiplicity="1" />
+          <End Type="DatabaseModel.Phone" Role="Phone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Phone">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="BusyBookCard">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="BookInstance" Relationship="DatabaseModel.BookInstanceBusyBookCard" FromRole="BusyBookCard" ToRole="BookInstance" />
+          <NavigationProperty Name="Reader" Relationship="DatabaseModel.ReaderBusyBookCard" FromRole="BusyBookCard" ToRole="Reader" />
+          <Property Name="ReaderId" Type="Int32" Nullable="false" />
+          <Property Name="BusyDateTimeBegin" Type="DateTime" Nullable="false" />
+          <Property Name="BusyDateTimeEnd" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <Association Name="BookInstanceBusyBookCard">
+          <End Type="DatabaseModel.BookInstance" Role="BookInstance" Multiplicity="1" />
+          <End Type="DatabaseModel.BusyBookCard" Role="BusyBookCard" Multiplicity="0..1" />
+        </Association>
+        <Association Name="ReaderBusyBookCard">
+          <End Type="DatabaseModel.Reader" Role="Reader" Multiplicity="1" />
+          <End Type="DatabaseModel.BusyBookCard" Role="BusyBookCard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reader">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BusyBookCard">
+              <PropertyRef Name="ReaderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Reader" Relationship="DatabaseModel.AccountReader" FromRole="Account" ToRole="Reader" />
+          <Property Name="Login" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
+          <NavigationProperty Name="Subscribtions" Relationship="DatabaseModel.AccountSubscribtion" FromRole="Account" ToRole="Subscribtion" />
+        </EntityType>
+        <Association Name="AccountReader">
+          <End Type="DatabaseModel.Reader" Role="Reader" Multiplicity="1" />
+          <End Type="DatabaseModel.Account" Role="Account" Multiplicity="0..1" />
+        </Association>
+        <EntityType Name="Subscribtion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DurationTimeBegin" Type="DateTime" Nullable="false" />
+          <Property Name="DurationTimeEnd" Type="DateTime" Nullable="false" />
+          <Property Name="Genre" Type="DatabaseModel.Genres" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="DatabaseModel.AccountSubscribtion" FromRole="Subscribtion" ToRole="Account" />
+          <Property Name="AccountId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="AccountSubscribtion">
+          <End Type="DatabaseModel.Account" Role="Account" Multiplicity="1" />
+          <End Type="DatabaseModel.Subscribtion" Role="Subscribtion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Subscribtion">
+              <PropertyRef Name="AccountId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DatabaseModelStoreContainer" CdmEntityContainer="DatabaseModelContainer">
+    <EntitySetMapping Name="LibrarySet">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.Library)">
+        <MappingFragment StoreEntitySet="LibrarySet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Admin" ColumnName="Admin" />
+          <ScalarProperty Name="WorkTimeBegin" ColumnName="WorkTimeBegin" />
+          <ScalarProperty Name="WorkTimeEnd" ColumnName="WorkTimeEnd" />
+          <ScalarProperty Name="FreeDay" ColumnName="FreeDay" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BookDescriptionSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.BookDescription)">
+        <MappingFragment StoreEntitySet="BookDescriptionSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Author" ColumnName="Author" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Publisher" ColumnName="Publisher" />
+          <ScalarProperty Name="PublishingYear" ColumnName="PublishingYear" />
+          <ScalarProperty Name="Genre" ColumnName="Genre" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BookInstanceSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.BookInstance)">
+        <MappingFragment StoreEntitySet="BookInstanceSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DescriptionId" ColumnName="DescriptionId" />
+          <ScalarProperty Name="IsBusy" ColumnName="IsBusy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PersonSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.Person)">
+        <MappingFragment StoreEntitySet="PersonSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.Employee)">
+        <MappingFragment StoreEntitySet="PersonSet_Employee">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Profession" ColumnName="Profession" />
+          <ScalarProperty Name="ExperienceYears" ColumnName="ExperienceYears" />
+          <ScalarProperty Name="LibraryId" ColumnName="LibraryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.Reader)">
+        <MappingFragment StoreEntitySet="PersonSet_Reader">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PhoneSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.Phone)">
+        <MappingFragment StoreEntitySet="PhoneSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BusyBookCardSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.BusyBookCard)">
+        <MappingFragment StoreEntitySet="BusyBookCardSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ReaderId" ColumnName="ReaderId" />
+          <ScalarProperty Name="BusyDateTimeBegin" ColumnName="BusyDateTimeBegin" />
+          <ScalarProperty Name="BusyDateTimeEnd" ColumnName="BusyDateTimeEnd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AccountSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.Account)">
+        <MappingFragment StoreEntitySet="AccountSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubscribtionSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.Subscribtion)">
+        <MappingFragment StoreEntitySet="SubscribtionSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DurationTimeBegin" ColumnName="DurationTimeBegin" />
+          <ScalarProperty Name="DurationTimeEnd" ColumnName="DurationTimeEnd" />
+          <ScalarProperty Name="Genre" ColumnName="Genre" />
+          <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="BookInstanceBusyBookCard" TypeName="DatabaseModel.BookInstanceBusyBookCard" StoreEntitySet="BusyBookCardSet">
+      <EndProperty Name="BookInstance">
+        <ScalarProperty Name="Id" ColumnName="BookInstance_Id" />
+      </EndProperty>
+      <EndProperty Name="BusyBookCard">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="AccountReader" TypeName="DatabaseModel.AccountReader" StoreEntitySet="AccountSet">
+      <EndProperty Name="Reader">
+        <ScalarProperty Name="Id" ColumnName="Reader_Id" />
+      </EndProperty>
+      <EndProperty Name="Account">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

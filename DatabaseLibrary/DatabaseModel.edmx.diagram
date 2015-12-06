@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f7ad25c36a6c4c069e33a5af3839b20f" Name="Diagram1" ZoomLevel="100" >
+        <EntityTypeShape EntityType="DatabaseModel.Library" Width="1.5" PointX="0.5" PointY="2.625" />
+        <EntityTypeShape EntityType="DatabaseModel.BookDescription" Width="1.875" PointX="0.5" PointY="6.125" />
+        <EntityTypeShape EntityType="DatabaseModel.BookInstance" PointX="3" PointY="6.125" Width="1.875" />
+        <AssociationConnector Association="DatabaseModel.BookDescriptionBookInstance" />
+        <EntityTypeShape EntityType="DatabaseModel.Person" Width="1.5" PointX="2.75" PointY="0.5" />
+        <EntityTypeShape EntityType="DatabaseModel.Employee" Width="1.5" PointX="2.75" PointY="3.375" />
+        <InheritanceConnector EntityType="DatabaseModel.Employee" />
+        <AssociationConnector Association="DatabaseModel.LibraryEmployee" />
+        <EntityTypeShape EntityType="DatabaseModel.Reader" Width="1.875" PointX="4.875" PointY="3.375" />
+        <InheritanceConnector EntityType="DatabaseModel.Reader" />
+        <EntityTypeShape EntityType="DatabaseModel.Phone" PointX="4.875" PointY="0.5" Width="1.5" />
+        <AssociationConnector Association="DatabaseModel.PersonPhone" ManuallyRouted="false" >
+        </AssociationConnector>
+        <EntityTypeShape EntityType="DatabaseModel.BusyBookCard" Width="1.75" PointX="5.625" PointY="6.125" />
+        <AssociationConnector Association="DatabaseModel.BookInstanceBusyBookCard" />
+        <AssociationConnector Association="DatabaseModel.ReaderBusyBookCard" />
+        <EntityTypeShape EntityType="DatabaseModel.Account" Width="1.5" PointX="8.125" PointY="3.125" />
+        <AssociationConnector Association="DatabaseModel.AccountReader" />
+        <EntityTypeShape EntityType="DatabaseModel.Subscribtion" Width="2.125" PointX="7.875" PointY="6" />
+        <AssociationConnector Association="DatabaseModel.AccountSubscribtion" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
