@@ -17,7 +17,7 @@ namespace DatabaseLibrary
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Person()
         {
-            this.Phone = new HashSet<Phone>();
+            this.Phones = new HashSet<Phone>();
         }
     
         public int Id { get; set; }
@@ -27,6 +27,6 @@ namespace DatabaseLibrary
         public string Sex { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Phone> Phone { get; set; }
+        public virtual ICollection<Phone> Phones { get; set; }
     }
 }

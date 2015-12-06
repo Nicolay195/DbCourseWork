@@ -361,7 +361,7 @@
           <Property Name="MiddleName" Type="String" Nullable="false" />
           <Property Name="LastName" Type="String" Nullable="false" />
           <Property Name="Sex" Type="String" Nullable="false" />
-          <NavigationProperty Name="Phone" Relationship="DatabaseModel.PersonPhone" FromRole="Person" ToRole="Phone" />
+          <NavigationProperty Name="Phones" Relationship="DatabaseModel.PersonPhone" FromRole="Person" ToRole="Phone" />
         </EntityType>
         <EntityType Name="Employee" BaseType="DatabaseModel.Person" >
           <Property Name="Profession" Type="String" Nullable="false" />
